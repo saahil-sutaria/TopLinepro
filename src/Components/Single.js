@@ -3,7 +3,8 @@ import {useLocation} from 'react-router-dom';
 
 function Single(props) {
 
-	const {largeImageURL, type, tags, user, views } = useLocation().state.img;
+	const {largeImageURL, type, tags, user, views} = useLocation().state.img;
+
 	const displayTags = () => {
 		const tagList = tags.split(',');
 		for(var i=0; i < tagList.length; i++) {
@@ -12,7 +13,7 @@ function Single(props) {
 			tagList[i] = tagL;
 		}
 		return(
-			tagList.map(tag => <div className="chip">{tag}</div>)
+			tagList.map((tag, index) => <div className="chip" key={index}>{tag}</div>)
 		)
 	}
 
