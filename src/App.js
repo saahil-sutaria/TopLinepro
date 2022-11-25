@@ -2,6 +2,7 @@ import './App.css';
 import React from 'react';
 import {Routes, Route, BrowserRouter} from 'react-router-dom';
 import Search from './Components/Search.js';
+import Single from './Components/Single';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Search />}/>
+          <Route path="/view" element={<Single />} />
         </Routes>
       </BrowserRouter>
     </div>

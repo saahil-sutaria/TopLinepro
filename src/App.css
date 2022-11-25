@@ -1,7 +1,29 @@
 .App {
   text-align: center;
 }
+
 input {
   max-width:400px;
 }
 
+#container{
+  display: grid;
+  padding: 20px;
+}
+
+.card-image .resizeimg{
+  height:50vh;
+}
+
+.card-content{
+  font-size: 20px !important;
+  font-weight: 500 !important;
+}
+
+.card {
+  padding: 5px;
+}
+
+.responsive-img{
+  max-height: 500px;
+}

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-
+import ImageList from './ImageList';
 
 function Search (props) {
 	
@@ -11,14 +11,10 @@ function Search (props) {
 	const initialStateSearch = '';
 	const [search, setSearch] = useState(initialStateSearch);
 
-	const [totalPages, setTotalPages] = useState(0);
-	const [currentPage, setCurrentPage] = useState(1);
-
-
 	useEffect( () => {
 		if(search === "") return;
-		getImageData(currentPage);
-	}, [currentPage, search]);
+		getImageData();
+	}, [search]);
 
 	useEffect( () => {
 		var storedSearch = window.localStorage.getItem('search');
@@ -30,15 +26,13 @@ function Search (props) {
 
 	}, []);
 
-	const getImageData = (currentPage) => {
-		fetch(`https://pixabay.com/api/?key=31556203-a2442d7eef07373e5c6bf4866&q=${search}&image_type=photo&pretty=true&per_page=30&page=${currentPage}`)
+	const getImageData = () => {
+		fetch(`https://pixabay.com/api/?key=31556203-a2442d7eef07373e5c6bf4866&q=${search}&image_type=photo&pretty=true&per_page=30`)
 		.then((response) => response.json())
 		.then((data) => {
 			console.log(data)
 			const images = data.hits;
 			setImages((prevState) => images);
-			const totalPages = Math.ceil(data.totalHits / 30);
-			setTotalPages(totalPages);
 		})
 		.catch((err) => console.log(err));
 	}
@@ -61,7 +55,7 @@ function Search (props) {
 					<i className="material-icons right">search</i>
 				</button>
 			</form>
-			
+			<ImageList imgs={images}/>
 		</div>
 	)
 }
