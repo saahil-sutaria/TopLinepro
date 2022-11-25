@@ -20,7 +20,6 @@ function Search (props) {
 		var storedSearch = window.localStorage.getItem('search');
 		
 		if(storedSearch !== null || storedSearch === ""){
-			console.log(storedSearch);
 			setSearch(storedSearch);
 		}
 
@@ -30,11 +29,10 @@ function Search (props) {
 		fetch(`https://pixabay.com/api/?key=31556203-a2442d7eef07373e5c6bf4866&q=${search}&image_type=photo&pretty=true&per_page=30`)
 		.then((response) => response.json())
 		.then((data) => {
-			console.log(data)
 			const images = data.hits;
 			setImages((prevState) => images);
 		})
-		.catch((err) => console.log(err));
+		.catch((err) => console.error(err));
 	}
 
 	const handleSubmit = (event) => {
